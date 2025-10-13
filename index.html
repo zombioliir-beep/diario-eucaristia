@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Um Amor que Me Levou a Cristo</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1996/1996095.png">
+  <style>
+    /* Fonte */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;600&display=swap');
+
+    :root{
+      --bg1: #fffaf6;
+      --bg2: #fff8f4;
+      --accent: #7a0a0a;
+      --accent-2: #b23a3a;
+      --card: #ffffff;
+      --muted: #5a5a5a;
+      --radius: 14px;
+    }
+
+    /* Reset simples */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+      scroll-behavior:smooth;
+    }
+
+    /* Layout */
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    header{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+      padding:28px 16px;
+      border-radius:0 0 16px 16px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    }
+    header .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      max-width:1000px;
+      margin:0 auto;
+    }
+    h1{
+      margin:0;
+      font-family:'Playfair Display', serif;
+      font-size:1.6rem;
+      letter-spacing:0.2px;
+    }
+
+    nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:8px;
+      font-weight:600;
+      font-size:0.95rem;
+      transition:background .18s, transform .12s;
+    }
+    nav a:hover{ background: rgba(255,255,255,0.08); transform:translateY(-2px); }
+
+    /* "pages" full-height-ish stack */
+    main{
+      margin-top:20px;
+    }
+
+    .page{
+      display:none;
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+      margin-bottom:26px;
+      animation:fadeIn .6s ease both;
+    }
+    .page.active{ display:block; }
+
+    h2{ margin-top:0; font-family:'Playfair Display', serif; color:var(--accent); }
+    p{ margin:12px 0; color:#222; }
+
+    .quote{
+      font-style:italic;
+      color:var(--muted);
+      border-left:4px solid var(--accent);
+      padding-left:12px;
+      margin:16px 0;
+      background: linear-gradient(90deg, rgba(250,245,245,1), rgba(255,255,255,0.8));
+      border-radius:8px;
+      padding:12px 14px;
+    }
+
+    pre.prayer{
+      white-space:pre-wrap;
+      background:#f7f5f5;
+      padding:14px;
+      border-left:4px solid var(--accent);
+      border-radius:8px;
+      font-family: 'Georgia', serif;
+      color:#333;
+    }
+
+    .gallery{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .gallery img{
+      width:100%;
+      max-width:48%;
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      display:block;
+    }
+
+    /* botões de navegação entre páginas */
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+    }
+    .btn{
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow:0 6px 16px rgba(122,10,10,0.16);
+    }
+    .btn.ghost{
+      background: transparent;
+      color:var(--accent);
+      border:1px solid rgba(122,10,10,0.12);
+      box-shadow:none;
+    }
+
+    footer{
+      text-align:center;
+      color:#444;
+      font-size:0.9rem;
+      margin:26px 0 60px;
+    }
+
+    /* Carlo section styling */
+    .carlo-card{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .carlo-card img{
+      width:200px;
+      border-radius:10px;
+      object-fit:cover;
+    }
+    .carlo-quotes{
+      max-width:680px;
+    }
+    .carlo-quotes blockquote{
+      margin:10px 0;
+      padding:14px;
+      background:#faf6f6;
+      border-left:4px solid var(--accent);
+      border-radius:8px;
+      font-style:italic;
+      color:#333;
+    }
+
+    /* Responsividade */
+    @media (max-width:720px){
+      .carlo-card img{ width:100%; max-width:100%; }
+      .gallery img{ max-width:100%; }
+      header .top{ flex-direction:column; gap:12px; align-items:flex-start; }
+      nav ul{ flex-wrap:wrap; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform: translateY(8px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+
+    /* Voltar ao topo discreto */
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(122,10,10,0.18);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top container">
+      <h1>Um Amor que Me Levou a Cristo</h1>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="#" data-target="page1" class="nav-link">Início</a></li>
+          <li><a href="#" data-target="page2" class="nav-link">Quando o amor é à distância</a></li>
+          <li><a href="#" data-target="page3" class="nav-link">Inspiração: Carlo Acutis</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="mainContainer">
+    <!-- Página 1: história (mantida igual ao original) -->
+    <article id="page1" class="page active" role="region" aria-labelledby="p1title">
+      <h2 id="p1title">Nossa História</h2>
+
+      <section aria-label="História pessoal">
+        <p>Éramos jovens. Eu com 15 anos, ela com 14. Mas nossos corações já sabiam o que sentíamos. Havia algo especial no jeito que ela me olhava — seus olhos me faziam imaginar um futuro inteiro ao lado dela. Seus cabelos encaracolados pareciam desenhados por Deus.</p>
+
+        <p>Nosso relacionamento era à distância, e isso nos exigia maturidade além da idade. Conversávamos, sonhávamos, cuidávamos um do outro mesmo de longe. Mas, com o tempo, a saudade pesou em mim. Acabei indo e voltando, achando que cada volta era certa... mas, na verdade, cada retorno trazia mais dor.</p>
+
+        <p>Quando entendi que estava ferindo alguém tão importante, fiz o mais difícil: deixei ela ir. Me despedi por mensagem, desejando que encontrasse alguém melhor — alguém que cuidasse dela como ela merecia. Porque, mesmo sem tê-la nos meus braços, ela sempre esteve — e talvez sempre estará — no meu coração.</p>
+      </section>
+
+      <aside class="quote" aria-hidden="false">
+        “Às vezes, Deus usa um amor terreno para nos levar a um amor eterno.”
+      </aside>
+
+      <section aria-label="Frases e orações">
+        <h3>Frases & Orações</h3>
+        <blockquote>“Deus une aqueles que se amam Nele.”</blockquote>
+        <pre class="prayer">
+Senhor, abençoa o amor que vivemos,
+mesmo que tenha sido breve.
+Que Ele floresça em mim como fé,
+e que a dor se transforme em oração.
+Amém.
+        </pre>
+      </section>
+
+      <section aria-label="Galeria">
+        <h3>Galeria</h3>
+        <div class="gallery" role="list">
+          <img role="listitem" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Light_in_church.jpg" alt="Luz entrando na igreja">
+          <img role="listitem" src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Candle_in_darkness.jpg" alt="Vela acesa na escuridão">
+        </div>
+      </section>
+
+      <div class="actions" aria-hidden="false">
+        <button class="btn" data-target="page2">Próxima página →</button>
+        <button class="btn ghost" data-target="page3">Inspiração: Carlo Acutis</button>
+      </div>
+    </article>
+
+    <!-- Página 2: conselho sobre relacionamento à distância -->
+    <article id="page2" class="page" role="region" aria-labelledby="p2title">
+      <h2 id="p2title">Quando o Amor é à Distância</h2>
+
+      <section>
+        <p>A distância desafia o amor de maneiras que a presença física não faz. Haverá dias de saudade intensa, dúvidas e medo. Ainda assim, a distância também pode ser um lugar de provação e crescimento — um campo onde a confiança e a fé são cultivadas.</p>
+
+        <p>Se o relacionamento é baseado em respeito, comunicação honesta e entrega a Deus, a distância pode fortalecer o vínculo. Não desistir não significa permanecer em uma situação que fere; significa avaliar com sabedoria, orar, agir com maturidade e, quando necessário, permitir que Deus guie os passos de cada um.</p>
+
+        <p>Sugestões práticas para quem vive um relacionamento à distância:</p>
+        <ul>
+          <li>Comunique-se com regularidade e com sinceridade: fale sobre alegrias, dúvidas e limites;</li>
+          <li>Estabeleça objetivos e prazos: saber que há um plano futuro ajuda a manter a esperança;</li>
+          <li>Cuide da vida espiritual em conjunto: orações, leituras e confiança em Deus unem;</li>
+          <li>Respeite o tempo e o espaço do outro: amor maduro preserva a liberdade e o bem-estar;</li>
+          <li>Se houver sinais de sofrimento contínuo, busque apoio: conversar com um líder espiritual, um amigo maduro ou família.</li>
+        </ul>
+
+        <p>Em essência: não desista sem antes ter feito o que é justo e sadio. E se o amor é para crescer em Cristo, que cada passo seja entregue a Ele.</p>
+      </section>
+
+      <div class="actions">
+        <button class="btn" data-target="page1">← Voltar ao início</button>
+        <button class="btn" data-target="page3">Ver inspiração: Carlo Acutis</button>
+      </div>
+    </article>
+
+    <!-- Página 3: Carlo Acutis -->
+    <article id="page3" class="page" role="region" aria-labelledby="p3title">
+      <h2 id="p3title">Inspiração: Carlo Acutis</h2>
+
+      <section class="carlo-card" aria-label="Sobre Carlo Acutis">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Carlo_Acutis.png" alt="Retrato de Carlo Acutis">
+        <div class="carlo-quotes">
+          <p>Carlo Acutis (1991–2006) foi um jovem italiano conhecido por usar a internet para evangelizar e por seu amor à Eucaristia. Seu exemplo mostra como a juventude pode unir fé e criatividade para levar o Evangelho aos outros.</p>
+
+          <div>
+            <h4>Algumas frases representativas</h4>
+            <blockquote>“A Eucaristia é a minha estrada para o céu.”</blockquote>
+            <blockquote>“Faça sempre pequenas coisas com grande amor.”</blockquote>
+            <blockquote>“A santidade é possível também hoje; não é algo reservado para poucos.”</blockquote>
+          </div>
+
+          <p>Essas ideias — amor à Eucaristia, serviço humilde e uso das ferramentas modernas para evangelizar — são algo que podemos levar para o nosso próprio projeto: transformar uma experiência pessoal em um testemunho que encoraja outros.</p>
+
+          <p>Se desejar visitar o site oficial ou materiais sobre Carlo Acutis, procure pelas páginas institucionais e institutos que divulgam sua vida e seu trabalho de evangelização.</p>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn" data-target="page1">← Voltar ao início</button>
+        <button class="btn ghost" id="visitCarlo" onclick="openExternal()">Visitar recursos sobre Carlo Acutis</button>
+      </div>
+    </article>
+
+    <footer>
+      <p>Feito com fé. Um capítulo da minha vida com Deus.</p>
+    </footer>
+  </main>
+
+  <button id="topBtn" aria-label="Voltar ao topo">Topo</button>
+
+  <script>
+    // Navegação entre "páginas" internas (single-page)
+    (function(){
+      const links = document.querySelectorAll('[data-target]');
+      const pages = document.querySelectorAll('.page');
+      function showPage(id){
+        pages.forEach(p => p.classList.toggle('active', p.id === id));
+        // rolagem para topo do container
+        document.getElementById('mainContainer').scrollIntoView({behavior:'smooth'});
+      }
+      links.forEach(link=>{
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = link.getAttribute('data-target');
+          if (target) showPage(target);
+        });
+      });
+    })();
+
+    // Botão "voltar ao topo"
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) topBtn.style.display = 'block';
+      else topBtn.style.display = 'none';
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Abrir recurso externo (abre em nova aba)
+    function openExternal(){
+      window.open('https://www.carloacutis.com/', '_blank');
+    }
+
+    // Acessibilidade: teclado para navegação (Left/Right para alternar)
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+        const visible = document.querySelector('.page.active');
+        const pages = Array.from(document.querySelectorAll('.page'));
+        const idx = pages.indexOf(visible);
+        if (e.key === 'ArrowRight'){
+          const next = pages[(idx + 1) % pages.length];
+          next.classList.add('active');
+          visible.classList.remove('active');
+        } else {
+          const prev = pages[(idx - 1 + pages.length) % pages.length];
+          prev.classList.add('active');
+          visible.classList.remove('active');
+        }
+        document.getElementById('mainContainer').scrollIntoView({behavior:'smooth'});
+      }
+    });
+  </script>
+</body>
+</html>
