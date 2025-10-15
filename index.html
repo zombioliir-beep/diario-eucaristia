@@ -12,22 +12,24 @@
 
   <style>
     :root{
-      --bg: #090909;
-      --panel: #0f0f10;
+      --bg: #090909;            /* fundo principal */
+      --panel: #0f0f10;         /* cartões */
       --muted: #bfbfbf;
       --text: #eeeeee;
-      --accent: #c6862e;
-      --accent-2: #b33b3b;
+      --accent: #c6862e;        /* dourado suave */
+      --accent-2: #b33b3b;      /* vermelho de destaque */
       --glass: rgba(255,255,255,0.03);
       --radius: 14px;
       --maxw: 1100px;
     }
 
+    /* Reset & base */
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#0b0b0b);color:var(--text);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
     a{color:inherit}
     .container{max-width:var(--maxw);margin:0 auto;padding:28px;}
 
+    /* Header */
     header{
       position:sticky;top:0;z-index:60;
       backdrop-filter: blur(6px);
@@ -44,6 +46,7 @@
     nav button:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.07);color:var(--text)}
     nav button.active{background: linear-gradient(90deg, rgba(198,134,46,0.12), rgba(179,59,59,0.06));border:1px solid rgba(198,134,46,0.18);color:var(--text);box-shadow:0 6px 22px rgba(198,134,46,0.06)}
 
+    /* Main */
     main{padding:28px 0}
     .page{
       display:none;
@@ -63,15 +66,18 @@
     p{color:var(--text);margin:12px 0;white-space:pre-line}
     .muted{color:var(--muted);font-size:0.95rem}
 
+    /* Card style callout */
     .callout{
       background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-left:4px solid var(--accent);
       padding:12px 14px;border-radius:10px;margin:14px 0;color:var(--muted);
     }
 
+    /* lists */
     ul{margin:12px 0 12px 18px}
     li{margin:8px 0}
 
+    /* actions */
     .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
     .btn{
       background: linear-gradient(90deg,var(--accent),var(--accent-2));
@@ -80,10 +86,16 @@
     .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.04);box-shadow:none}
     .btn:hover{transform:translateY(-3px)}
 
+    /* small utility */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .glass{background:var(--glass);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);}
+
     footer{text-align:center;color:var(--muted);font-size:0.9rem;margin-top:8px;padding-bottom:24px}
 
+    /* top button */
     #topBtn{position:fixed;right:20px;bottom:20px;background:var(--accent);color:#060606;padding:10px 12px;border-radius:10px;border:none;cursor:pointer;display:none;box-shadow:0 10px 30px rgba(198,134,46,0.12)}
 
+    /* responsive */
     @media (max-width:880px){
       .grid{grid-template-columns:1fr}
       .header-inner{padding:12px 18px}
@@ -113,43 +125,195 @@
   </header>
 
   <main class="container" id="mainContainer">
+    <!-- PAGE 1: TEU TEXTO ORIGINAL PARA PYETRA (mantido exatamente) -->
+    <article id="page1" class="page active" role="region" aria-labelledby="p1title">
+      <h2 id="p1title">Nossa História</h2>
 
-    <article id="page1" class="page active">
-      <h2>Nossa História</h2>
       <p>eu vou contar nossa historia, eramos jovens tinha 15 anos e ainda tenho e ela 14 sabemos oque sentiamos, ela tinha uns olhos que me fazia imaginar meu futuro, e um cabelo encaracolados, nosso relacionamento era a distancia entao tinhamos grande reconhecimento sobre maturidade, só que... eu nao aguentei a distancia e acabei com idas e voltas varias vezes, eu achava que quando eu voltava estava fazendo o certo mais ai eu percebi que só estava magoando cada vez mais ela... foi entao que deixei a ir em bora, me despedi por mensagem sujerindo alguem melhor e cuidasse melhor dela ja que nao pude nem se quer senti la em meus braços.</p>
+
       <div class="callout">Este site nasceu desse amor — uma jornada de aprendizado e de entrega a Deus. Pyetra permanece no centro deste testemunho.</div>
+
       <div class="actions">
         <button class="btn" data-target="page2">Seguir: Sobre a Fé →</button>
       </div>
     </article>
 
-    <!-- as demais páginas seguem (Sobre a Fé, Carlo, Milagres, Kit, etc.) -->
+    <!-- PAGE 2: Sobre a Fé -->
+    <article id="page2" class="page" role="region" aria-labelledby="p2title">
+      <h2 id="p2title">Sobre a Fé</h2>
+      <p>A fé não é um conforto instantâneo: é um caminho. É decidir, dia após dia, confiar e aprender com as quedas. Neste espaço compartilho práticas e ideias que me ajudaram a permanecer firme e a transformar a dor em crescimento.</p>
+
+      <div class="grid">
+        <div class="glass">
+          <h3>Práticas diárias</h3>
+          <ul>
+            <li>Leitura breve da Escritura ao acordar</li>
+            <li>Oração simples ao longo do dia</li>
+            <li>Exame de consciência à noite</li>
+          </ul>
+        </div>
+        <div class="glass">
+          <h3>Comunidade</h3>
+          <p>Participar de Missa, grupos de jovens ou de oração dá suporte prático e espiritual para a fé que queremos viver.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn secondary" data-target="page1">← Voltar</button>
+        <button class="btn" data-target="page3">Próximo: Carlo →</button>
+      </div>
+    </article>
+
+    <!-- PAGE 3: Carlo Acutis -->
+    <article id="page3" class="page" role="region" aria-labelledby="p3title">
+      <h2 id="p3title">Carlo Acutis</h2>
+
+      <p>Carlo Acutis (1991–2006) é hoje um exemplo para muitos jovens: usou talento e internet para evangelizar e deixou um legado de amor à Eucaristia. Sua vida mostra que santidade e juventude não são opostos.</p>
+
+      <h3>Aspectos do seu legado</h3>
+      <ul>
+        <li>Devoto da Eucaristia — “A Eucaristia é a minha estrada para o céu.”</li>
+        <li>Uso criativo da tecnologia para evangelizar: exposições digitais e catálogos.</li>
+        <li>Vida simples: oração, atenção ao próximo e humildade.</li>
+      </ul>
+
+      <div class="callout">Inspiração prática: pensar como Carlo — usar o que você tem (tempo, ferramentas, talentos) para aproximar outros de Deus.</div>
+
+      <div class="actions">
+        <button class="btn secondary" data-target="page2">← Voltar</button>
+        <button class="btn" data-target="page4">Milagres Eucarísticos →</button>
+      </div>
+    </article>
+
+    <!-- PAGE 4: Milagres Eucarísticos -->
+    <article id="page4" class="page" role="region" aria-labelledby="p4title">
+      <h2 id="p4title">Milagres Eucarísticos</h2>
+
+      <p>Os milagres eucarísticos são relatos — em vários tempos e lugares — de manifestações extraordinárias ligadas à presença real de Cristo na Eucaristia. Carlo reuniu e organizou muitos desses relatos como forma de aproximar corações do mistério.</p>
+
+      <h3>Por que isso importa</h3>
+      <ul>
+        <li>Fortalece a fé na presença real;</li>
+        <li>Convida à adoração e reverência;</li>
+        <li>Abre o coração para o mistério que vai além do que vemos.</li>
+      </ul>
+
+      <div class="actions">
+        <button class="btn secondary" data-target="page3">← Voltar</button>
+        <button class="btn" data-target="page5">Kit de Santidade →</button>
+      </div>
+    </article>
+
+    <!-- PAGE 5: Kit de Santidade -->
+    <article id="page5" class="page" role="region" aria-labelledby="p5title">
+      <h2 id="p5title">Kit de Santidade</h2>
+
+      <p>Inspirado por práticas simples e eficazes (como as que Carlo propunha), aqui vai um "kit" prático — pequenas disciplinas que ajudam a crescer:</p>
+
+      <ul>
+        <li>Missa e Comunhão com reverência sempre que possível;</li>
+        <li>Confissão regular para cura e recomeço;</li>
+        <li>Leitura breve da Palavra diariamente;</li>
+        <li>Pequenos atos de caridade; servir em comunidade;</li>
+        <li>Momentos de silêncio/adoração (mesmo 5–10 minutos por dia).</li>
+      </ul>
+
+      <div class="callout">O objetivo não é perfeição, mas fidelidade nas pequenas coisas.</div>
+
+      <div class="actions">
+        <button class="btn secondary" data-target="page4">← Voltar</button>
+        <button class="btn" data-target="page6">Tecnologia & Juventude →</button>
+      </div>
+    </article>
+
+    <!-- PAGE 6: Tecnologia & Juventude -->
+    <article id="page6" class="page" role="region" aria-labelledby="p6title">
+      <h2 id="p6title">Tecnologia & Juventude</h2>
+
+      <p>Carlo mostrou que a tecnologia pode ser usada para o bem: exposições digitais, sites e conteúdo que ajudam a formar e evangelizar. Como jovem, podes escolher usar redes e ferramentas para espalhar o bem e partilhar testemunhos.</p>
+
+      <h3>Ideias práticas</h3>
+      <ul>
+        <li>Publicar reflexões curtas nas redes com foco em esperança;</li>
+        <li>Criar posts sobre leituras bíblicas ou atos de caridade;</li>
+        <li>Fazer pequenos vídeos ou páginas que expliquem um ponto de fé com simplicidade;</li>
+        <li>Usar a internet para conectar, não apenas para distrair.</li>
+      </ul>
+
+      <div class="actions">
+        <button class="btn secondary" data-target="page5">← Voltar</button>
+        <button class="btn" data-target="page7">Reflexão Final →</button>
+      </div>
+    </article>
+
+    <!-- PAGE 7: REFLEXÃO FINAL (carta) -->
+    <article id="page7" class="page" role="region" aria-labelledby="p7title">
+      <h2 id="p7title">Reflexão Final</h2>
+
+      <p>Senhor, quantas vezes eu fechei os olhos pedindo respostas, e encontrei silêncio. Mas foi nesse silêncio que aprendi a ouvir. Aprendi que o amor, mesmo quando se parte, deixa marcas que levam para Ti. Porque quando amamos de verdade, mesmo na dor, algo em nós se torna mais puro, mais Teu.</p>
+
+      <p>Ela foi o começo de algo que eu não entendia. No sorriso dela, eu vi o reflexo de um amor que não era só meu — era Teu também. E quando eu perdi, foi aí que encontrei o caminho de volta ao Teu coração. Eu me vi quebrado, e o Senhor me mostrou que os pedaços formavam um altar.</p>
+
+      <p>Hoje, eu não escrevo mais com tristeza, mas com gratidão. Porque cada lembrança dela me ensinou algo sobre Tua presença. E mesmo que eu não saiba se um dia nossos caminhos se cruzam de novo, eu entrego isso nas Tuas mãos. O amor que um dia tive, agora é oração.</p>
+
+      <p>Se um dia Pyetra ler essas palavras, que sinta paz. Que saiba que eu nunca deixei de desejar o bem, nem de agradecer por tudo o que ela foi. E que entenda que foi o amor — aquele amor inocente e sincero — que me levou de volta a Ti, Senhor.</p>
+
+      <p>Porque às vezes, o amor da gente é só o caminho. E o destino final sempre é o Teu abraço.</p>
+
+      <div class="actions">
+        <button class="btn secondary" data-target="page6">← Voltar</button>
+        <button class="btn" data-target="page1">Voltar ao Início</button>
+      </div>
+    </article>
+
+    <footer>
+      <p class="muted">Feito com fé por Ray Zombioli — inspirado por Carlo Acutis</p>
+    </footer>
   </main>
 
-  <footer>
-    <p class="muted">Feito com fé por Ray — inspirado por Carlo Acutis</p>
-  </footer>
-
-  <button id="topBtn">Topo</button>
+  <button id="topBtn" aria-label="Voltar ao topo">Topo</button>
 
   <script>
+    // Navegação entre páginas e marcação do botão ativo
     (function(){
       const navBtns = document.querySelectorAll('header nav button');
+      const actionBtns = document.querySelectorAll('.btn, header nav button');
       const pages = document.querySelectorAll('.page');
+
       function showPage(id){
         pages.forEach(p => p.classList.toggle('active', p.id === id));
+        // atualizar botão ativo no cabeçalho
         navBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-target') === id));
+        // scroll to top of main container
         document.getElementById('mainContainer').scrollIntoView({behavior:'smooth'});
       }
-      document.querySelectorAll('.btn, header nav button').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-          const target=btn.getAttribute('data-target');
-          if(target)showPage(target);
+
+      actionBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const target = btn.getAttribute('data-target');
+          if(!target) return;
+          showPage(target);
         });
       });
-      const topBtn=document.getElementById('topBtn');
-      window.addEventListener('scroll',()=>topBtn.style.display=window.scrollY>300?'block':'none');
-      topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+      // keyboard navigation (left/right)
+      document.addEventListener('keydown', (e) => {
+        if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const visible = Array.from(pages).find(p => p.classList.contains('active'));
+        const idx = Array.from(pages).indexOf(visible);
+        if(idx === -1) return;
+        let next;
+        if(e.key === 'ArrowRight') next = pages[(idx + 1) % pages.length];
+        else next = pages[(idx - 1 + pages.length) % pages.length];
+        if(next) showPage(next.id);
+      });
+
+      // top button
+      const topBtn = document.getElementById('topBtn');
+      window.addEventListener('scroll', () => {
+        topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+      });
+      topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
     })();
   </script>
 </body>
